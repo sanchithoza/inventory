@@ -15,6 +15,10 @@ const productMasterSchema = new mongoose.Schema({
     productSubCategory: {
         type: String,
         required: true
+    },
+    availableStock: {
+        type: Number,
+        default: 0,
     }
 }, {
     timestamps: true

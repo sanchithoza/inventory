@@ -345,18 +345,47 @@ function onChangeProductNameTransation() {
 
 function populateTransactionTable(data) {
     console.log("populating Transactions data table...");
-    //productList = data;
-    var length = data.length;
     var table = $('#transctionSummery').DataTable();
     table.clear()
     data.forEach(element => {
-        $('#transctionSummery').dataTable().fnAddData([
-            //`<a  href='#' onclick='edit("${data[i]._id}");'>edit</a>/<a  href='#' onclick='del("${data[i]._id}");'>delete</a>`,
-            element.transactionDate,
-            element.product,
-            element.transactionType,
-            element.quantity
-        ]);
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "http://localhost:3000/getProductById",
+            data: JSON.stringify({ "id": element.product }),
+            dataType: 'json',
+            success: async function(data) {
+                $('#transctionSummery').dataTable().fnAddData([
+                    //`<a  href='#' onclick='edit("${data[i]._id}");'>edit</a>/<a  href='#' onclick='del("${data[i]._id}");'>delete</a>`,
+                    element.transactionDate,
+                    data.productName,
+                    element.transactionType,
+                    element.quantity
+                ]);
+            },
+            error: function(e) {
+                alert("Error!")
+                console.log("ERROR: ", e);
+            }
+        });
+
     });
 
+}
+
+function populateStockStatement(data) {
+    console.log(data);
+    console.log("populating Stock data table...");
+
+    var table = $('#stockSummery').DataTable();
+    table.clear()
+    data.forEach(element => {
+        $('#stockSummery').dataTable().fnAddData([
+            //`<a  href='#' onclick='edit("${data[i]._id}");'>edit</a>/<a  href='#' onclick='del("${data[i]._id}");'>delete</a>`,
+            element.productCategory,
+            element.productName,
+            element.availableStock
+        ]);
+
+    });
 }

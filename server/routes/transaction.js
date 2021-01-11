@@ -1,4 +1,6 @@
 const boom = require('boom')
+const _ = require('lodash')
+const productMaster = require('./../models/productMaster')
 const transactions = require('../models/transaction')
 async function routes(fastify, options) {
 
@@ -19,9 +21,9 @@ async function routes(fastify, options) {
     })
     fastify.post('/addTransaction', async(request, reply) => {
         try {
-            let trans = new transaction(request.body);
+            let trans = new transactions(request.body);
             let newTransaction = await trans.save();
-            console.log(newTransaction);
+            await updateStock(request.body.quantity, request.body.transactionType, request.body.product);
             await reply.send(newTransaction)
                 //return newpost
         } catch (err) {
@@ -29,5 +31,31 @@ async function routes(fastify, options) {
         }
         // await reply.send(request.body.hey)
     })
+    fastify.get('/stockStatement', async(request, reply) => {
+        try {
+            let stockSummery = await productMaster.find()
+            console.log(stockSummery);
+            reply.send(stockSummery)
+        } catch (error) {
+            throw boom.boomify(error)
+        }
+    })
+}
+
+let updateStock = async(quantity, type, id) => {
+    try {
+        if (type == "Inward") {
+            await productMaster.findOneAndUpdate({ _id: id }, {
+                $inc: { availableStock: quantity }
+            })
+        }
+        if (type == "Outward") {
+            await productMaster.findOneAndUpdate({ _id: id }, {
+                $inc: { availableStock: -(quantity) }
+            })
+        }
+    } catch (error) {
+        throw boom.boomify(error)
+    }
 }
 module.exports = routes

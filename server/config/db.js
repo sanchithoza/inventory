@@ -3,11 +3,12 @@ const mongoose = require('mongoose')
     // Connect to DB
 async function dbConnector(fastify, options) {
     try {
-        const url = "mongodb://localhost:27017/fastify-blog"
+        const url = "mongodb://localhost:27017/inventory"
         const db = await mongoose
             .connect(url, {
                 useNewUrlParser: true,
-                useUnifiedTopology: true
+                useUnifiedTopology: true,
+                useFindAndModify: false
             })
         console.log("Database is connected")
         fastify.decorate('mongo', db)

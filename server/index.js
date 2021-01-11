@@ -1,5 +1,5 @@
 const fastify = require('fastify')({
-    logger: true
+    logger: false
 }); //Bring in Fastify
 const PORT = process.env.PORT || 3000;
 ({

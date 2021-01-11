@@ -17,6 +17,7 @@
         "boostrap": "^2.0.0",
         "fastify": "^3.9.2",
         "fastify-cors": "^5.1.0",
+        "lodash": "^4.17.20",
         "mongoose": "^5.11.8",
         "nodemon": "^2.0.6"
     }

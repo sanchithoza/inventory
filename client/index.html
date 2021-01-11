@@ -34,12 +34,12 @@
                 <div class="row" style="padding: 8px; border-bottom: 2px solid black;">
 
                     <div class="col-md-4" style="border-right: 1px solid black ;">
-                        <button style="width: 100%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transactionModal">
+                        <button style="width: 100%;" id="btnInward" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transactionModal">
                             <h5>New <br>Inward <br>Entry</h5>
                           </button>
                     </div>
                     <div class="col-md-4" style="border-right: 1px solid black ;">
-                        <button style="width: 100%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transactionModal">
+                        <button style="width: 100%;" id="btnOutward" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#transactionModal">
                             <h5>New <br>Outward <br>Entry</h5>
                           </button>
                     </div>
@@ -124,8 +124,11 @@
                                             <div class="col-md-4" style="border-bottom: 1px solid black;">
                                                 Transaction Type
                                             </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input autocomplete="off" style="width: 100%;" name="productType" id="transactionType">
+                                            <div class="col-md-8" style="border-bottom: 1px solid black;padding: 2px;">
+                                                <select name="transactionType" id="transactionType" style="width: 100%;">
+                                                    <option value="Inward">Inward</option>
+                                                    <option value="Outward">Outward</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-4" style="border-bottom: 1px solid black;">
                                                 Quantity
@@ -158,9 +161,24 @@
                 <!----------------------------->
 
                 <div class="row">
+                    <div class="col-md-12" style="overflow: auto; padding: 10px; border: 2px solid black;">
+                        <table id="stockSummery" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Product Category</th>
+                                    <th>Product Name</th>
+                                    <th>Available Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12" style="height: 5px;"></div>
                     <div class="col-md-6" style="overflow: auto; padding: 10px; border: 2px solid black;">
                         <div style="border-bottom: 2px solid black; margin: 2px;">
-                            <h4>Stock Summery</h4>
+                            <h4>Product Data</h4>
 
                         </div>
                         <table id="productRegister" class="display">
@@ -217,6 +235,9 @@
             $.get("http://localhost:3000/transactions", function(data) {
                 populateTransactionTable(data);
             });
+            $.get("http://localhost:3000/stockStatement", function(data) {
+                populateStockStatement(data);
+            });
             //----------------------------
             //add product modal events
             //---------------------------
@@ -224,6 +245,15 @@
             $('#addProduct').click(() => {
                 addNewProduct();
             });
+            $('#btnOutward').click(() => {
+                $('#transactionType').val('Outward').change()
+                    //console.log("Out bc")
+            });
+            $('#btnInward').click(() => {
+                $('#transactionType').val('Inward').change()
+                    //console.log("Out bc")
+            });
+
             $("#productMasterModal").on('show.bs.modal', function() {
                 openProductMasterModal();
             });
