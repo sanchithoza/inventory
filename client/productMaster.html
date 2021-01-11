@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Inventory Management
+    </title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/datatable.css">
+    <script type="text/javascript" src="./js/jquery-min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>-->
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/datatable.js"></script>
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="header" class="row">
+
+        </div>
+        <div class="row">
+            <div class="col-md-2" id="menu">
+
+            </div>
+            <div class="col-md-10" style="border: 1px solid black;">
+                <div class="row" style="padding: 8px; border-bottom: 2px solid black;">
+                    <div class="col-md-6" style="border-right: 1px solid black ;">
+                        <h4>Product Master</h4>
+                    </div>
+                    <div class="col-md-6" style="text-align: right;">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productMasterModal">
+    Add New Product
+  </button>
+                        <!----------------------------->
+                        <!-- Add Product Modal Modal -->
+                        <!----------------------------->
+                        <div class="modal fade" id="productMasterModal" tabindex="-1" aria-labelledby="productMasterModalLabel" data-bs-backdrop="static" aria-hidden="true">
+
+                        </div>
+                        <!----------------------------->
+                        <!-- Add Product Modal Modal -->
+                        <!----------------------------->
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding: 10px; border: 2px solid black;">
+                        <table id="productRegister" class="display">
+                            <thead>
+                                <tr>
+                                    <th>edit/delete</th>
+                                    <th>Company Name</th>
+                                    <th>Product Name</th>
+                                    <th>Product Category</th>
+                                    <th>Product Sub Caregory</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#header').html(head);
+            $('#menu').html(menu);
+            $('#productMasterModal').html(addProductModal)
+            $.get("http://localhost:3000/products", function(data) {
+                populateProductTable(data);
+            });
+            //----------------------------
+            //add product modal events
+            //---------------------------
+
+            $('#addProduct').click(() => {
+                addNewProduct();
+            });
+            $("#productMasterModal").on('show.bs.modal', function() {
+                openProductMasterModal();
+            });
+            $("#productCategory").on('change', function() {
+                onChangeProductCategory();
+            });
+            $("#subCategory").on('change', function() {
+                onChangeSubCategory();
+            });
+
+
+
+        });
+
+
+        //$("#message").html("hello")
+    </script>
+</body>
+
+</html>
