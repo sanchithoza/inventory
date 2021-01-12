@@ -63,97 +63,7 @@
                 <!-- Add Transaction Modal Modal -->
                 <!----------------------------->
                 <div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionLabel" data-bs-backdrop="static" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="transactionLabel">Transaction Entry</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Product Category
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input autocomplete="off" list="transactionProductCategories" style="width: 100%;" name="transactionProductCategory" id="transactionProductCategory" class="productCategory">
-                                                <datalist id="transactionProductCategories" class="productCategory">
-                                                        </datalist>
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Sub Category
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input autocomplete="off" list="transactionSubCategories" style="width: 100%;" name="transactionSubCategory" id="transactionSubCategory">
-                                                <datalist id="transactionSubCategories">
-                                                        </datalist>
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Company Name
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input autocomplete="off" list="transactionCompanyNames" style="width: 100%;" name="transationCompanyName" id="transactionCompanyName">
-                                                <datalist id="transactionCompanyNames">
-                                                        </datalist>
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Product Name
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input autocomplete="off" list="transactionProductNames" style="width: 100%;" name="productName" id="transactionProductName">
-                                                <datalist id="transactionProductNames">
-                                                        </datalist>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Product Id
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input autocomplete="off" style="width: 100%;" name="productId" id="transactionProductId">
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Date
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input type="date" autocomplete="off" style="width: 100%;" name="transactionDate" id="transactionDate">
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Transaction Type
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;padding: 2px;">
-                                                <select name="transactionType" id="transactionType" style="width: 100%;">
-                                                    <option value="Inward">Inward</option>
-                                                    <option value="Outward">Outward</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Quantity
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <input type="number" autocomplete="off" name="transactionQuantity" id="transactionQuantity">
-                                            </div>
-                                            <div class="col-md-4" style="border-bottom: 1px solid black;">
-                                                Remark
-                                            </div>
-                                            <div class="col-md-8" style="border-bottom: 1px solid black;">
-                                                <textarea rows="2" name="transactionRemark" id="transactionRemark">
-                                                    
-                                                 </textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button id="addTransaction" type="button" class="btn btn-primary">Add Transaction</button>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!----------------------------->
@@ -224,20 +134,13 @@
 
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(async function() {
 
             $('#header').html(head);
             $('#menu').html(menu);
             $('#productMasterModal').html(addProductModal)
-            $.get("http://localhost:3000/products", function(data) {
-                populateProductTable(data);
-            });
-            $.get("http://localhost:3000/transactions", function(data) {
-                populateTransactionTable(data);
-            });
-            $.get("http://localhost:3000/stockStatement", function(data) {
-                populateStockStatement(data);
-            });
+            $('#transactionModal').html(addTransactionModal)
+            await loadTables();
             //----------------------------
             //add product modal events
             //---------------------------

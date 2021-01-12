@@ -1,17 +1,40 @@
 let head = '<div class="col-md-12" style="border-bottom: 2px solid black;padding: 20px;text-align: center;"><h2>Inventory Management System</h2></div>';
 let menu = '<ul class="nav flex-column">' +
     '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link active" href="index.html">Dashboard</a></li>' +
-    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="outwardRegister.html">Outward</a></li>' +
-    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./inwardRegister.html">Inward</a></li>' +
+    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./register.html?type=Outward">Outward</a></li>' +
+    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./register.html?type=Inward">Inward</a></li>' +
     '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./productMaster.html">Product Master</a></li>' +
     '</ul>';
 
 let addProductModal = '<div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="productMasterModalLabel">Add New Product</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div> <div class="modal-body"> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Product Category </div> <div class="col-md-8"> <input autocomplete="off" list="productCategories" style="width: 100%;" name="productCategory" id="productCategory" class="productCategory"> <datalist id="productCategories" class="productCategories"> </datalist> </div> </div> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Sub Category </div> <div class="col-md-8"> <input autocomplete="off" list="subCategories" style="width: 100%;" name="subCategory" id="subCategory" class="subCategory"> <datalist id="subCategories" class="subCategories"> </datalist> </div> </div> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Company Name </div> <div class="col-md-8"> <input autocomplete="off" list="companyNames" style="width: 100%;" name="companyName" id="companyName"> <datalist id="companyNames"> </datalist> </div> </div> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Product Name </div> <div class="col-md-8"> <input autocomplete="off" list="productNames" style="width: 100%;" name="productName" id="productName"> <datalist id="productNames"> </datalist> </div> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button id="addProduct" type="button" class="btn btn-primary">Save changes</button> </div> </div> </div>';
+let addTransactionModal = '<div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="transactionLabel">Transaction Entry</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div> <div class="modal-body"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-4" style="border-bottom: 1px solid black;"> Product Category </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionProductCategories" style="width: 100%;" name="transactionProductCategory" id="transactionProductCategory" class="productCategory"> <datalist id="transactionProductCategories" class="productCategory"> </datalist> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Sub Category </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionSubCategories" style="width: 100%;" name="transactionSubCategory" id="transactionSubCategory"> <datalist id="transactionSubCategories"> </datalist> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Company Name </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionCompanyNames" style="width: 100%;" name="transationCompanyName" id="transactionCompanyName"> <datalist id="transactionCompanyNames"> </datalist> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Product Name </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionProductNames" style="width: 100%;" name="productName" id="transactionProductName"> <datalist id="transactionProductNames"> </datalist> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4" style="border-bottom: 1px solid black;"> Product Id </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" style="width: 100%;" name="productId" id="transactionProductId"> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Date </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input type="date" autocomplete="off" style="width: 100%;" name="transactionDate" id="transactionDate"> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Transaction Type </div> <div class="col-md-8" style="border-bottom: 1px solid black;padding: 2px;"> <select name="transactionType" id="transactionType" style="width: 100%;"> <option value="Inward">Inward</option> <option value="Outward">Outward</option> </select> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Quantity </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input type="number" autocomplete="off" name="transactionQuantity" id="transactionQuantity"> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Remark </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <textarea rows="2" name="transactionRemark" id="transactionRemark"> </textarea> </div> </div> </div> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button id="addTransaction" type="button" class="btn btn-primary">Add Transaction</button> </div> </div> </div>';
 //==================================
 //==Product modal javascript==>
 //==================================
 let companyList = [];
 let productList;
+
+function GetParameterValues(param) {
+    var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < url.length; i++) {
+        var urlparam = url[i].split('=');
+        if (urlparam[0] == param) {
+            return urlparam[1];
+        }
+    }
+}
+
+function loadTables() {
+    $.get("http://localhost:3000/products", async function(data) {
+        await populateProductTable(data);
+    });
+    $.get("http://localhost:3000/transactions", async function(data) {
+        await populateTransactionTable(data);
+    });
+    $.get("http://localhost:3000/stockStatement", async function(data) {
+        await populateStockStatement(data);
+    });
+}
 
 function addNewProduct() {
     let companyName = $('#companyName').val()
@@ -30,11 +53,8 @@ function addNewProduct() {
         url: "http://localhost:3000/addProduct",
         data: JSON.stringify(newProduct),
         dataType: 'json',
-        success: function(data) {
-            console.log(data);
-            $.get("http://localhost:3000/products", async function(data) {
-                await populateProductTable(data);
-            });
+        success: async function(data) {
+            await loadTables();
             $('#productMasterModal').modal('hide');
         },
         error: function(e) {
@@ -62,10 +82,8 @@ function del(id) {
         url: "http://localhost:3000/deleteProduct",
         data: JSON.stringify(argu),
         dataType: 'json',
-        success: function(data) {
-            $.get("http://localhost:3000/products", function(data) {
-                populateProductTable(data);
-            });
+        success: async function(data) {
+            await loadTables()
         },
         error: function(e) {
             alert("Error!")
@@ -191,11 +209,9 @@ function addNewTransaction() {
         url: "http://localhost:3000/addTransaction",
         data: JSON.stringify(newTransaction),
         dataType: 'json',
-        success: function(data) {
+        success: async function(data) {
             console.log(data);
-            $.get("http://localhost:3000/products", async function(data) {
-                await populateProductTable(data);
-            });
+            await loadTables()
             $('#transactionModal').modal('hide');
         },
         error: function(e) {
@@ -203,7 +219,7 @@ function addNewTransaction() {
             console.log("ERROR: ", e);
         }
     });
-    console.log(newTransaction);
+
 }
 
 
@@ -354,11 +370,11 @@ function populateTransactionTable(data) {
             url: "http://localhost:3000/getProductById",
             data: JSON.stringify({ "id": element.product }),
             dataType: 'json',
-            success: async function(data) {
+            success: async function(result) {
                 $('#transctionSummery').dataTable().fnAddData([
                     //`<a  href='#' onclick='edit("${data[i]._id}");'>edit</a>/<a  href='#' onclick='del("${data[i]._id}");'>delete</a>`,
                     element.transactionDate,
-                    data.productName,
+                    result.productName,
                     element.transactionType,
                     element.quantity
                 ]);
@@ -374,9 +390,7 @@ function populateTransactionTable(data) {
 }
 
 function populateStockStatement(data) {
-    console.log(data);
     console.log("populating Stock data table...");
-
     var table = $('#stockSummery').DataTable();
     table.clear()
     data.forEach(element => {
@@ -388,4 +402,34 @@ function populateStockStatement(data) {
         ]);
 
     });
+}
+
+function populateIoRegister(data) {
+    console.log("populating IO register data table...");
+    var table = $('#transactionRegister').DataTable();
+    table.clear()
+    data.forEach(element => {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "http://localhost:3000/getProductById",
+            data: JSON.stringify({ "id": element.product }),
+            dataType: 'json',
+            success: async function(result) {
+                $('#transactionRegister').dataTable().fnAddData([
+                    //`<a  href='#' onclick='edit("${data[i]._id}");'>edit</a>/<a  href='#' onclick='del("${data[i]._id}");'>delete</a>`,
+                    element.transactionDate,
+                    result.productCategory,
+                    result.productName,
+                    element.quantity
+                ]);
+            },
+            error: function(e) {
+                alert("Error!")
+                console.log("ERROR: ", e);
+            }
+        });
+
+    });
+
 }

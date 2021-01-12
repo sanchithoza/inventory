@@ -19,6 +19,20 @@ async function routes(fastify, options) {
             throw boom.boomify(err)
         }
     })
+    fastify.get('/transactions/:type', async(request, reply) => {
+        //return newpost
+        try {
+            await transactions.find({ transactionType: request.params.type }).exec((err, result) => {
+                if (err) {
+                    return reply.send(`Error reading ${err}`)
+                }
+                reply.send(result)
+            });
+
+        } catch (err) {
+            throw boom.boomify(err)
+        }
+    })
     fastify.post('/addTransaction', async(request, reply) => {
         try {
             let trans = new transactions(request.body);
