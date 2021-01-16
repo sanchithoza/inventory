@@ -12,11 +12,6 @@
     <script type="text/javascript" src="./../js/datatable.js"></script>
     <script type="text/javascript" src="./../header.js"></script>
     <script type="text/javascript" src="./../js/lodash.min.js"></script>
-
-
-
-
-
 </head>
 
 <body>
@@ -30,7 +25,6 @@
                 <table id="productRegister" class="display">
                     <thead>
                         <tr>
-                            <th>edit/delete</th>
                             <th>Company Name</th>
                             <th>Product Name</th>
                             <th>Product Category</th>
@@ -51,14 +45,28 @@
 <script>
     $(document).ready(function() {
 
-
         $.get("http://localhost:3000/products", function(data) {
             try {
-                populateProductTable(data);
+                productList = data;
+                var length = data.length;
+                var table = $('#productRegister').DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "ordering": false,
+                    "info": false
+                });
+                table.clear()
+                for (var i = 0; i < length; i++) {
+                    $('#productRegister').dataTable().fnAddData([
+                        data[i].companyName,
+                        data[i].productName,
+                        data[i].productCategory,
+                        data[i].productSubCategory
+                    ]);
+                }
             } catch (error) {
                 console.log(error);
             }
-
         });
 
         let btn = document.getElementById('btn');
@@ -74,7 +82,7 @@
                 },
                 jsPDF: {
                     unit: 'in',
-                    format: 'letter',
+                    format: 'a4',
                     orientation: 'portrait'
                 }
             };

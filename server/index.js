@@ -14,7 +14,7 @@ fastify.register(require('fastify-cors'), {
     //routes
 fastify.register(require('./routes/master'));
 fastify.register(require('./routes/transaction'));
-fastify.register(require('./routes/report'));
+
 // Declare a route
 //Funtion To run the server
 const start = async() => {
