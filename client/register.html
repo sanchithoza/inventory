@@ -5,34 +5,36 @@
     <title>
         Inventory Management
     </title>
-    <style>
-        .modal input {
-            margin: 10px;
-        }
-    </style>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/datatable.css">
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./css/custom.css">
     <script type="text/javascript" src="./js/jquery-min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>-->
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/datatable.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="header.js"></script>
     <script type="text/javascript" src="./js/lodash.min.js"></script>
 </head>
 
+
 <body>
+    <div class="row header">
+        <h4>Inventory Management System</h4>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <!--inside header.js-->
+    </div>
+    <div class="content">
 
-    <div class="container">
-        <div id="header" class="row">
-
-        </div>
-        <div class="row">
-            <div class="col-md-2" id="menu">
-
-            </div>
-            <div class="col-md-10" style="border: 1px solid black;">
-                <div class="row" style="padding: 8px; border-bottom: 2px solid black;">
-                    <div class="col-md-6" style="border-right: 1px solid black ;">
+        <div class="row playground">
+            <div class="col-md-12">
+                <div class="row" style="padding: 8px; border-bottom: 1px solid black;">
+                    <div class="col-md-6">
                         <h4 id="pageTitle"></h4>
                     </div>
                     <div class="col-md-6" style="text-align: right;">
@@ -90,28 +92,34 @@
 
 
 
-            $('#header').html(head);
-            $('#menu').html(menu);
+            $('#sidebar').html(sidebar);
+
             $('#transactionModal').html(addTransactionModal)
+
             $.get("http://localhost:3000/transactions/" + type, function(data) {
                 populateIoRegister(data);
             });
             //----------------------------
-            //add product modal events
+            //add transaction modal events
             //---------------------------
-
-            $('#addProduct').click(() => {
-                addNewProduct();
+            $("#transactionModal").on('show.bs.modal', function() {
+                openTransactionModal();
             });
-            $("#productMasterModal").on('show.bs.modal', function() {
-                openProductMasterModal();
+            $("#transactionProductCategory").on('change', function() {
+                onChangeProductCategoryTransaction();
             });
-            $("#productCategory").on('change', function() {
-                onChangeProductCategory();
+            $("#transactionSubCategory").on('change', function() {
+                onChangeSubCategoryTransation();
             });
-            $("#subCategory").on('change', function() {
-                onChangeSubCategory();
-            });
+            $("#transactionCompanyName").on('change', function() {
+                onChangeCompanyNameTransation();
+            })
+            $("#transactionProductName").on('change', function() {
+                onChangeProductNameTransation();
+            })
+            $('#addTransaction').click(() => {
+                addNewTransaction();
+            })
 
 
 

@@ -85,3 +85,7 @@
             float: none;
         }
     }
+    
+    .modal input {
+        margin: 10px;
+    }

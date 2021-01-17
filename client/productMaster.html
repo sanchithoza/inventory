@@ -7,11 +7,16 @@
     </title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/datatable.css">
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./css/custom.css">
     <script type="text/javascript" src="./js/jquery-min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>-->
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/datatable.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="header.js"></script>
     <script type="text/javascript" src="./js/lodash.min.js"></script>
 </head>
@@ -20,18 +25,11 @@
     <div class="row header">
         <h4>Inventory Management System</h4>
     </div>
-    <div class="sidebar">
-        <a href="index.html">Home</a>
-        <a href="./register.html?type=Outward">Outward Register</a>
-        <a href="./register.html?type=Inward">Inward Register</a>
-        <a href="./productMaster.html">Product Master</a>
+    <div class="sidebar" id="sidebar">
+        <!--inside header.js-->
     </div>
     <div class="content">
-
         <div class="row playground">
-            <!--    <div class="col-md-2" id="menu">
-
-            </div>-->
             <div class="col-md-12">
                 <div class="row" style="padding: 8px; ">
                     <div class="col-md-6">
@@ -80,8 +78,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#header').html(head);
-            $('#menu').html(menu);
+            $('#sidebar').html(sidebar);
             $('#productMasterModal').html(addProductModal)
             $.get("http://localhost:3000/products", function(data) {
                 populateProductTable(data);

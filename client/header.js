@@ -1,11 +1,9 @@
-let head = '<div class="col-md-12" style="border-bottom: 2px solid black;padding: 20px;text-align: center;"><h2>Inventory Management System</h2></div>';
-let menu = '<ul class="nav flex-column">' +
-    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link active" href="index.html">Dashboard</a></li>' +
-    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./register.html?type=Outward">Outward</a></li>' +
-    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./register.html?type=Inward">Inward</a></li>' +
-    '<li class="nav-item" style="border-bottom: 2px solid black;"><a class="nav-link" href="./productMaster.html">Product Master</a></li>' +
-    '</ul>';
-
+let sidebar = ' <div class="sidebar">' +
+    '<a href="index.html">Home</a>' +
+    '<a href="./register.html?type=Outward">Outward Register</a>' +
+    '<a href="./register.html?type=Inward">Inward Register</a>' +
+    '<a href="./productMaster.html">Product Master</a>' +
+    '</div>'
 let addProductModal = '<div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="productMasterModalLabel">Add New Product</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div> <div class="modal-body"> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Product Category </div> <div class="col-md-8"> <input autocomplete="off" list="productCategories" style="width: 100%;" name="productCategory" id="productCategory" class="productCategory"> <datalist id="productCategories" class="productCategories"> </datalist> </div> </div> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Sub Category </div> <div class="col-md-8"> <input autocomplete="off" list="subCategories" style="width: 100%;" name="subCategory" id="subCategory" class="subCategory"> <datalist id="subCategories" class="subCategories"> </datalist> </div> </div> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Company Name </div> <div class="col-md-8"> <input autocomplete="off" list="companyNames" style="width: 100%;" name="companyName" id="companyName"> <datalist id="companyNames"> </datalist> </div> </div> <div class="row" style="border-bottom: 1px solid black;padding: 3px;"> <div class="col-md-4"> Product Name </div> <div class="col-md-8"> <input autocomplete="off" list="productNames" style="width: 100%;" name="productName" id="productName"> <datalist id="productNames"> </datalist> </div> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button id="addProduct" type="button" class="btn btn-primary">Save changes</button> </div> </div> </div>';
 let addTransactionModal = '<div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="transactionLabel">Transaction Entry</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div> <div class="modal-body"> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-4" style="border-bottom: 1px solid black;"> Product Category </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionProductCategories" style="width: 100%;" name="transactionProductCategory" id="transactionProductCategory" class="productCategory"> <datalist id="transactionProductCategories" class="productCategory"> </datalist> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Sub Category </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionSubCategories" style="width: 100%;" name="transactionSubCategory" id="transactionSubCategory"> <datalist id="transactionSubCategories"> </datalist> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Company Name </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionCompanyNames" style="width: 100%;" name="transationCompanyName" id="transactionCompanyName"> <datalist id="transactionCompanyNames"> </datalist> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Product Name </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" list="transactionProductNames" style="width: 100%;" name="productName" id="transactionProductName"> <datalist id="transactionProductNames"> </datalist> </div> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-4" style="border-bottom: 1px solid black;"> Product Id </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input autocomplete="off" style="width: 100%;" name="productId" id="transactionProductId"> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Date </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input type="date" autocomplete="off" style="width: 100%;" name="transactionDate" id="transactionDate"> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Transaction Type </div> <div class="col-md-8" style="border-bottom: 1px solid black;padding: 2px;"> <select name="transactionType" id="transactionType" style="width: 100%;"> <option value="Inward">Inward</option> <option value="Outward">Outward</option> </select> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Quantity </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <input type="number" autocomplete="off" name="transactionQuantity" id="transactionQuantity"> </div> <div class="col-md-4" style="border-bottom: 1px solid black;"> Remark </div> <div class="col-md-8" style="border-bottom: 1px solid black;"> <textarea rows="2" name="transactionRemark" id="transactionRemark"> </textarea> </div> </div> </div> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button id="addTransaction" type="button" class="btn btn-primary">Add Transaction</button> </div> </div> </div>';
 
@@ -14,6 +12,10 @@ let addTransactionModal = '<div class="modal-dialog modal-lg"> <div class="modal
 //==================================
 let companyList = [];
 let productList;
+$.get("http://localhost:3000/products", async function(data) {
+    productList = await data
+});
+
 
 function GetParameterValues(param) {
     var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -97,7 +99,30 @@ function populateProductTable(data) {
     console.log("populating data table...");
     productList = data;
     var length = data.length;
-    var table = $('#productRegister').DataTable();
+    var table = $('#productRegister').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [{
+                extend: 'excelHtml5',
+                title: 'Excel',
+                text: 'Export to excel'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3,4,5,6]
+                    // }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'PDF',
+                text: 'Export to PDF'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3, 4, 5, 6]
+                    //  }
+            }
+        ]
+    });
+
     table.clear()
     for (var i = 0; i < length; i++) {
         $('#productRegister').dataTable().fnAddData([
@@ -224,9 +249,10 @@ function addNewTransaction() {
 }
 
 
-function openTransactionModal() {
+async function openTransactionModal() {
     let productCategoryArray = [];
     let productCategoryUi = "";
+
     $('#transactionProductCategory').html("");
     productList.forEach(element => {
         productCategoryArray.push(element.productCategory)
@@ -362,7 +388,29 @@ function onChangeProductNameTransation() {
 
 function populateTransactionTable(data) {
     console.log("populating Transactions data table...");
-    var table = $('#transctionSummery').DataTable();
+    var table = $('#transctionSummery').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [{
+                extend: 'excelHtml5',
+                title: 'Excel',
+                text: 'Export to excel'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3,4,5,6]
+                    // }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'PDF',
+                text: 'Export to PDF'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3, 4, 5, 6]
+                    //  }
+            }
+        ]
+    });
     table.clear()
     data.forEach(element => {
         $.ajax({
@@ -392,7 +440,29 @@ function populateTransactionTable(data) {
 
 function populateStockStatement(data) {
     console.log("populating Stock data table...");
-    var table = $('#stockSummery').DataTable();
+    var table = $('#stockSummery').DataTable({
+
+        dom: 'Bfrtip',
+        buttons: [{
+                extend: 'excelHtml5',
+                title: 'Excel',
+                text: 'Export to excel'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3,4,5,6]
+                    // }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'PDF',
+                text: 'Export to PDF'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3, 4, 5, 6]
+                    //  }
+            }
+        ]
+    });
     table.clear()
     data.forEach(element => {
         $('#stockSummery').dataTable().fnAddData([
@@ -406,8 +476,30 @@ function populateStockStatement(data) {
 }
 
 function populateIoRegister(data) {
+
     console.log("populating IO register data table...");
-    var table = $('#transactionRegister').DataTable();
+    var table = $('#transactionRegister').DataTable({
+        dom: 'Bfrtip',
+        buttons: [{
+                extend: 'excelHtml5',
+                title: 'Excel',
+                text: 'Export to excel'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3,4,5,6]
+                    // }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'PDF',
+                text: 'Export to PDF'
+                    //Columns to export
+                    //exportOptions: {
+                    //     columns: [0, 1, 2, 3, 4, 5, 6]
+                    //  }
+            }
+        ]
+    });
     table.clear()
     data.forEach(element => {
         $.ajax({
