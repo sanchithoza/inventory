@@ -58,10 +58,9 @@
                             <thead>
                                 <tr>
                                     <th>edit/delete</th>
-                                    <th>Company Name</th>
-                                    <th>Product Name</th>
                                     <th>Product Category</th>
                                     <th>Product Sub Caregory</th>
+                                    <th>Product Discription</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +90,7 @@
                 addNewProduct();
             });
             $("#productMasterModal").on('show.bs.modal', function() {
+                clearModal(this);
                 openProductMasterModal();
             });
             $("#productCategory").on('change', function() {

@@ -48,11 +48,9 @@
                         <div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionLabel" data-bs-backdrop="static" aria-hidden="true">
 
                         </div>
-
                         <!----------------------------->
                         <!-- Add Transaction Modal Modal -->
                         <!----------------------------->
-
                     </div>
                 </div>
                 <div class="row">
@@ -103,6 +101,7 @@
             //add transaction modal events
             //---------------------------
             $("#transactionModal").on('show.bs.modal', function() {
+                clearModal(this);
                 openTransactionModal();
             });
             $("#transactionProductCategory").on('change', function() {

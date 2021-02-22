@@ -8,6 +8,9 @@ const transactionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String
+    },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'productMaster'

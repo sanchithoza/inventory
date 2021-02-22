@@ -1,18 +1,14 @@
 const mongoose = require('mongoose')
 const productMasterSchema = new mongoose.Schema({
-    companyName: {
-        type: String,
-        required: true
-    },
     productCategory: {
         type: String,
         required: true
     },
-    productName: {
+    productSubCategory: {
         type: String,
         required: true
     },
-    productSubCategory: {
+    productDiscription: {
         type: String,
         required: true
     },
