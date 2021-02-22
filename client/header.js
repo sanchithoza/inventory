@@ -447,6 +447,9 @@ function populateStockStatement(data) {
     var table = $('#stockSummery').DataTable({
 
         dom: 'Bfrtip',
+        order: [
+            [3, "asc"]
+        ],
         buttons: [{
                 extend: 'excelHtml5',
                 title: 'Excel',
