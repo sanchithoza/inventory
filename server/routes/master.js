@@ -23,20 +23,27 @@ async function routes(fastify, options) {
         /*insert Master Record Routes*/
     fastify.post('/addProduct', async(request, reply) => {
         try {
-            let product = new productMaster(request.body);
-            let newProduct = await product.save();
-            await reply.send(newProduct)
-                //return newpost
+            await productMaster.find(request.body).exec(async(err, result) => {
+                if (err) {
+                    return reply.send(`Error reading ${err}`)
+                }
+                if (result.length == 0) {
+                    let product = new productMaster(request.body);
+                    let newProduct = await product.save();
+                    await reply.send(newProduct)
+                } else {
+                    await reply.send("Record Already Exists .")
+                }
+            });
         } catch (err) {
             throw boom.boomify(err)
         }
-        // await reply.send(request.body.hey)
     })
 
     /*Get Product Where*/
     fastify.post('/getProductWhere', async(request, reply) => {
         try {
-            console.log(`req${JSON.stringify(request.body)}`);
+            //  console.log(`req${JSON.stringify(request.body)}`);
             await productMaster.find(request.body).exec((err, result) => {
                 if (err) {
                     return reply.send(`Error reading ${err}`)
@@ -44,7 +51,7 @@ async function routes(fastify, options) {
                 //  let response = [];
                 //response.push(result)
                 //console.log(result);
-                console.log(result);
+                //   console.log(result);
                 reply.send(result)
             });
 
@@ -72,7 +79,7 @@ async function routes(fastify, options) {
                     return reply.send(`Error reading ${err}`)
                 }
 
-                console.log(result);
+                // console.log(result);
                 reply.send(result)
             });
         } catch (error) {
