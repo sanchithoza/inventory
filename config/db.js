@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
     // Connect to DB
 async function dbConnector(fastify, options) {
     try {
-        const url = "mongodb://localhost:27017/inventory_db"
+        const url = "mongodb+srv://gujtexMongo:Gujtex.2021@cluster0.unndp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+            //        const url = "mongodb://localhost:27017/inventory_db"
         const db = await mongoose
             .connect(url, {
                 useNewUrlParser: true,
