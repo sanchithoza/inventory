@@ -13,17 +13,14 @@
     "author": "SanchitOza",
     "license": "ISC",
     "dependencies": {
-        "aws-lambda-fastify": "^1.4.4",
         "boom": "^7.3.0",
         "boostrap": "^2.0.0",
-        "ejs": "^3.1.5",
         "fastify": "^3.9.2",
         "fastify-cors": "^5.1.0",
         "jspdf": "^2.2.0",
         "lodash": "^4.17.20",
         "mongoose": "^5.11.8",
         "nodemon": "^2.0.6",
-        "pdf-lib": "^1.15.0",
-        "serverless-http": "^2.7.0"
+        "pdf-lib": "^1.15.0"
     }
 }
