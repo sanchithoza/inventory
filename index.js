@@ -17,15 +17,16 @@ fastify.register(require('./routes/transaction'));
 
 // Declare a route
 //Funtion To run the server
-//const start = async() => {
-try {
-    console.log(`here :${PORT }`);
-    fastify.listen(PORT)
-    fastify.log.info(`server listening on ${PORT}`)
-} catch (err) {
-    console.log(`Error :${PORT }`);
-    fastify.log.error(err)
-        //      process.exit(1)
+const start = async() => {
+    try {
+        //console.log(`here :${PORT }`);
+        await fastify.listen(PORT)
+        fastify.log.info(`server listening on ${PORT}`)
+    } catch (err) {
+        console.log(`Error :${PORT }`);
+        fastify.log.error(err)
+            //      process.exit(1)
 
+    }
 }
-//start();
+start();
