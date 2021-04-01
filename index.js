@@ -5,8 +5,8 @@ const PORT = 5000;
 ({
     logger: true
 })
-const db = require('./config/db')
-fastify.register(db)
+//const db = require('./config/db')
+//fastify.register(db)
 fastify.register(require('fastify-cors'), {
         origin: true
     })
