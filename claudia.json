@@ -1,0 +1,10 @@
+{
+    "lambda": {
+        "role": "inventory-executor",
+        "name": "inventory",
+        "region": "us-east-1"
+    },
+    "api": {
+        "id": "xxik4udsqc"
+    }
+}

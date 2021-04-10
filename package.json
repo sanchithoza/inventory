@@ -5,7 +5,10 @@
     "main": "server/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
+        "start": "node app.js",
+        "deploy": "claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1",
+        "update": "claudia update",
+        "generate-proxy": "claudia generate-serverless-express-proxy --express-module app"
     },
     "keywords": [
         "inventory"
@@ -13,6 +16,7 @@
     "author": "SanchitOza",
     "license": "ISC",
     "dependencies": {
+        "aws-lambda-fastify": "^1.4.4",
         "boom": "^7.3.0",
         "boostrap": "^2.0.0",
         "fastify": "^3.9.2",
@@ -22,5 +26,8 @@
         "mongoose": "^5.11.8",
         "nodemon": "^2.0.6",
         "pdf-lib": "^1.15.0"
+    },
+    "devDependencies": {
+        "claudia": "^5.13.0"
     }
 }
