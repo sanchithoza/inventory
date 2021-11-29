@@ -1,0 +1,16 @@
+###Root URL
+GET http://localhost:9000/ HTTP/1.1
+
+###Get all Products 
+GET http://localhost:9000/products HTTP/1.1
+
+###Add a new product
+POST http://localhost:9000/addProduct HTTP/1.1
+content-type: application/json
+
+{
+    "productCategory": "Keyboard",
+    "productSubCategory": "wired keyboard",
+    "productDiscription":"Wired mouse",
+    "availableStock":100
+}
