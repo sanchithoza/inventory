@@ -9,8 +9,16 @@ POST http://localhost:9000/addProduct HTTP/1.1
 content-type: application/json
 
 {
-    "productCategory": "Keyboard",
-    "productSubCategory": "wired keyboard",
+    "productCategory": "Mouse",
+    "productSubCategory": "wired mouse",
     "productDiscription":"Wired mouse",
     "availableStock":100
+}
+
+###Add a new product
+POST http://localhost:9000/getProductWhere HTTP/1.1
+content-type: application/json
+
+{
+    "availableStock": 100
 }
