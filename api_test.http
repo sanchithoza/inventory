@@ -20,10 +20,5 @@ POST http://localhost:9000/getProductWhere HTTP/1.1
 content-type: application/json
 
 {
-<<<<<<< HEAD
     "availableStock": 100
-=======
-    "productCategory": "Keyboard",
-    "availableStock":100
->>>>>>> adedb13929f9cfa994bab5b89da71c2d1493f699
 }
