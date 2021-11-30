@@ -14,7 +14,6 @@ async function routes(fastify, options) {
                 }
                 reply.send(result)
             });
-
         } catch (err) {
             throw boom.boomify(err)
         }
@@ -28,7 +27,6 @@ async function routes(fastify, options) {
                 }
                 reply.send(result)
             });
-
         } catch (err) {
             throw boom.boomify(err)
         }
@@ -43,7 +41,6 @@ async function routes(fastify, options) {
         } catch (err) {
             throw boom.boomify(err)
         }
-        // await reply.send(request.body.hey)
     })
     fastify.get('/stockStatement', async(request, reply) => {
         try {

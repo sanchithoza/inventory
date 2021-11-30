@@ -1,2 +1,3 @@
 const fastify = require("./main");
-fastify.listen(9000);
+require('dotenv').config()
+fastify.listen(process.env.PORT);
